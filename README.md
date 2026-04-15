@@ -93,3 +93,84 @@ ScreenShot
 
 ---
 
+**Phrase 3: rule to block inbound traffic on port 23 (Telnet)**
+
+🔐 Basic Rule Structure
+
+* A firewall rule to block inbound traffic includes:
+
+Direction: Inbound (incoming traffic)
+  
+Action: Deny / Drop
+
+Protocol: TCP or UDP
+
+Port: Specific port number (e.g., 23)
+
+Source (optional): IP address or “any”
+
+*Purpose*: block inbound traffic on port 23 (Telnet)
+
+*Command*: sudo ufw deny 23
+
+screenshot
+
+<img width="413" height="88" alt="Screenshot 2026-04-15 162319" src="https://github.com/user-attachments/assets/be02e86f-5f79-4312-92c1-fb33f4ec9df6" />
+
+⚡ Key Rule Principles
+
+✔ Use deny/drop to block traffic
+✔ Specify port and protocol clearly
+✔ Apply to inbound (INPUT) direction
+✔ Restrict by IP if needed (more secure)
+✔ Always verify rules after adding
+
+---
+
+**Phrase 3: Testing Firewall Rules for Network Security**
+
+**Test Locally (on your Kali machine)**
+
+Using Telnet:
+
+👉 If blocked, you’ll see:
+
+* Connection refused or
+* Unable to connect
+
+*Command:* telnet localhost 23
+
+ScreenShot
+
+<img width="543" height="119" alt="Screenshot 2026-04-15 212946" src="https://github.com/user-attachments/assets/e30358f6-ab6b-490c-9d84-4c5d2eb01494" />
+
+---
+
+**Test Remotely (from another machine)**
+
+Replace TARGET_IP with your Kali IP:
+
+**Command:**telnet TARGET_IP 23:
+
+ScreenShot
+
+<img width="356" height="71" alt="Screenshot 2026-04-15 214137" src="https://github.com/user-attachments/assets/6c033c1e-6548-4ee8-8808-66136627d41a" />
+
+---
+
+**Use Nmap (Recommended for testing)**
+
+Scan port 23:
+
+*Command:* nmap -p 23 TARGET_IP
+
+screenshot
+
+<img width="356" height="71" alt="Screenshot 2026-04-15 214137" src="https://github.com/user-attachments/assets/d0c9eb9c-1fe6-450c-90df-05e401354a6f" />
+
+**How to Read Results**
+* open → Port is accessible ❌ (rule not working)
+* closed → Service not running
+* filtered → Firewall is blocking ✅ (this is what you want)
+
+---
