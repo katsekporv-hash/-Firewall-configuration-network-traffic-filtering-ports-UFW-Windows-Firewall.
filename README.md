@@ -38,7 +38,7 @@ screenshot
 
 2. Type:
 
-wf.msc
+*Command:* wf.msc
 
 3. Press Enter
 👉 This opens Windows Defender Firewall with Advanced Security
@@ -127,7 +127,7 @@ screenshot
 
 ---
 
-**Phrase 3: Testing Firewall Rules for Network Security**
+**Phrase 4: Testing Firewall Rules for Network Security**
 
 **Test Locally (on your Kali machine)**
 
@@ -174,3 +174,6 @@ screenshot
 * filtered → Firewall is blocking ✅ (this is what you want)
 
 ---
+
+**Phrase 5: Testing Firewall Rules for Network Security**
+
