@@ -1,4 +1,4 @@
-<img width="952" height="953" alt="image" src="https://github.com/user-attachments/assets/1013eddd-ae75-4ec0-ae36-ed3d52b1bdba" /># Firewall-configuration-network-traffic-filtering-ports-UFW-Windows-Firewall.
+
 
 **OverView**
 
@@ -173,7 +173,130 @@ screenshot
 * closed → Service not running
 * filtered → Firewall is blocking ✅ (this is what you want)
 
+
 ---
 
-**Phrase 5: Testing Firewall Rules for Network Security**
+**Phrase 5: Rules to Allow SSH(port 22) on Linux**
+
+*Command:* sudo ufw allow 22
+
+screenshot
+
+<img width="262" height="80" alt="Screenshot 2026-04-23 073723" src="https://github.com/user-attachments/assets/f558c1e0-47ed-4d63-bb65-0c87beb09ee6" />
+
+⚡**Quick Summary**
+Allow SSH: sudo ufw allow 22
+Restrict access: allow only trusted IPs
+Always verify rules after adding
+
+---
+
+**Phrase 6: To remove the test block rule and restore your firewall to its previous state.**
+
+*Command:* sudo ufw delete deny 23
+
+ScreenShot
+
+<img width="354" height="84" alt="Screenshot 2026-04-23 075153" src="https://github.com/user-attachments/assets/ebffc25f-fe57-42ac-80ad-42fe2ef8f3d5" />
+
+---
+
+**Phrase 7:documentation of the commands and GUI steps used for your firewall tasks**
+
+1. Install UFW (Linux)
+
+* sudo apt update
+* sudo apt install ufw
+
+---
+
+2. Enable Firewall
+
+* sudo ufw enable
+
+---
+
+3. List Current Rules
+
+* sudo ufw status
+* sudo ufw status verbose
+* sudo ufw status numbered
+
+---
+
+4. Block Inbound Traffic (Test Rule – Port 23 Telnet)
+
+* sudo ufw deny 23
+
+---
+
+5. Test the Rule Local test:
+
+* telnet localhost 23
+* nc -zv localhost 23
+
+**Scan test**
+
+* nmap -p 23 localhost
+  
+---
+
+6. Allow SSH (Port 22)
+
+* sudo ufw allow 22
+
+---
+
+7. Remove Test Rule (Restore State)
+
+sudo ufw delete deny 23
+
+---
+
+**Alternative (iptables Commands)**
+
+*Block port:*
+* sudo iptables -A INPUT -p tcp --dport 23 -j DROP
+
+---
+
+*Remove rule:*
+* sudo iptables -D INPUT -p tcp --dport 23 -j DROP
+
+---
+
+*List rules:*
+* sudo iptables -L -n -v
+
+---
+
+**🖥️ Windows Firewall (GUI Steps)**
+* Press Win + R
+* Type: wf.msc
+* Click Inbound Rules
+* Click New Rule
+* Select Port
+* Choose TCP and enter port (e.g., 23)
+* Select Block the connection
+* Apply to all profiles
+* Name the rule and finish
+
+
+**⚡ Summary**
+* Installed and enabled firewall
+* Listed rules
+* Blocked port 23 (Telnet)
+* Tested rule (telnet, netcat, nmap)
+* Allowed SSH (port 22)
+* Removed test rule
+
+---
+
+**Phrase 7:Summary of how firewal filters traffic**
+
+A firewall filters traffic by **examining network data and applying predefined rules** to decide whether to allow or block it. It checks key factors such as **IP address (source/destination), port number, protocol (TCP/UDP), and traffic direction (inbound/outbound)**.
+
+If the traffic matches an **allowed rule**, it passes through; if it matches a **deny rule or looks suspicious**, it is blocked. This process helps protect systems by preventing unauthorized access while allowing legitimate communication.
+  
+-----
 
